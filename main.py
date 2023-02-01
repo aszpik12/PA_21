@@ -3,9 +3,9 @@ def eredmeny(jatekoslapok: [int], geplapok: [int]):
     jszam: int = lapszamolas(jatekoslapok)
     gszam: int = lapszamolas(geplapok)
     if jszam > 21:
-        print("játékos vesztett")
+        return "a játékos vesztett"
     if gszam > 21:
-        print("gép vesztett")
+        return "a gép veszett"
 
 def lapszamolas(lapok)->int:
     pontok: int = 0
