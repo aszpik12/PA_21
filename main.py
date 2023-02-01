@@ -19,5 +19,16 @@ def lapszamolas(lapok)->int:
 
 #teszteset
 
+def jatekos_vesztett_teszt():
+    jatekoskartyai = [10, 10, 10]
+    gepkartyai = [2, 10, 7]
 
+    print(eredmeny(jatekoskartyai, gepkartyai))
+
+
+def tesztek():
+    jatekos_vesztett_teszt()
+
+
+tesztek()
 
