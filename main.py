@@ -1,14 +1,28 @@
 #megoldás
 def eredmeny(jatekoslapok: [int], geplapok: [int]):
+    eredmenyek = ""
     jszam: int = lapszamolas(jatekoslapok)
     gszam: int = lapszamolas(geplapok)
+    if jszam <= 21 and gszam<=21:
+        if jszam > gszam:
+            eredmenyek = ("a játékos nyert")
+        elif gszam > jszam:
+            eredmenyek = ("a gép nyert")
+        elif gszam == jszam:
+            if jszam < gszam:
+                eredmenyek = ("a játékos nyert")
+            elif jszam > gszam:
+                eredmenyek = ("a gép nyert")
+            else:
+                eredmenyek = ("döntetlen")
     if jszam > 21:
         eredmenyek = "a játékos vesztett"
-        return eredmenyek
-    elif gszam > 21:
+    if gszam > 21:
         eredmenyek = "a gép veszett"
-        return eredmenyek
+    if jszam > 21 and gszam > 21:
+        eredmenyek = "döntetlen mindkettő túl"
 
+    return eredmenyek
 def lapszamolas(lapok)->int:
     pontok: int = 0
     index: int = 0
@@ -60,13 +74,13 @@ def gep_nyert_kozelebb_teszt():
 
 def jatek_nyert_kozelebb_gep_tavolabb_teszt():
     jatekoskartyai = [3, 10, 2]
-    gepkartyai = [5, 4, 5]
+    gepkartyai = [8, 8, 8]
     gepkarty = lapszamolas(gepkartyai)
     jatkarty = lapszamolas(jatekoskartyai)
     print("jatek nyert kozelebb gep tavolabb teszt")
     vart: str = "a játékos nyert"
     kapott: str = eredmeny(jatekoskartyai, gepkartyai)
-    if vart == kapott and jatkarty<gepkarty and gepkarty>21:
+    if vart == kapott and jatkarty < gepkarty and gepkarty > 21:
         print("teszt sikeres!")
     else:
         print("teszt sikertelen!")
@@ -79,7 +93,7 @@ def jatek_vesztett_tavolabb_gep_kozelebb_teszt():
     print("kátékos vesztett tavolabb gep kozelebb teszt")
     vart: str = "a gép nyert"
     kapott: str = eredmeny(jatekoskartyai, gepkartyai)
-    if vart == kapott and gepkartykarty<jatkarty and jatkarty>21:
+    if vart == kapott and gepkarty<jatkarty and jatkarty>21:
         print("teszt sikeres!")
     else:
         print("teszt sikertelen!")
@@ -111,20 +125,18 @@ def dontetlen():
     print("döntettlen teszt")
     kapott: str = eredmeny(jatekoskartyai, gepkartyai)
     vart: str = "döntetlen"
-    if kapott==vart and len(jatekoskartyai)==len(gepkartyai):
+    if kapott==vart:
         print("teszt sikeres!")
     else:
         print("teszt sikertelen!")
 
 def dontetlen_mindketto_tul():
-    jatekoskartyai = [10, 10, 3]
-    gepkartyai = [10, 7, 10]
-    gepkarty = lapszamolas(gepkartyai)
-    jatkarty = lapszamolas(jatekoskartyai)
+    jatekoskartyai = [10, 6, 10]
+    gepkartyai = [10, 10, 10]
     print("döntettlen mindketto túl teszt")
     kapott: str = eredmeny(jatekoskartyai, gepkartyai)
-    vart: str = "döntetlen"
-    if kapott==vart and gepkarty>21 and jatkarty>21:
+    vart: str = "döntetlen mindkettő túl"
+    if kapott==vart:
         print("teszt sikeres!")
     else:
         print("teszt sikertelen!")
